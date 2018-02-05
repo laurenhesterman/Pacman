@@ -140,36 +140,41 @@ function displayPacman(){
 function displayScore(){
     document.getElementById('score').innerHTML = score;
 }
+
 function displayRed(){
-    
-    
-    setTimeout(function(){
-        var num = Math.floor(Math.random() * (4)) + 2;
-        if (num == 2){
-            if (world[red.x][red.y-1] == 2) { }
-            else { red.y--;}
+    var num = Math.floor(Math.random() * (4)) + 2;
+    if (num == 2){
+        if (world[red.x][red.y-1] == 2) { 
+        } else { 
+            red.y--;
             }
-        else if (num == 3) {
-            if (world[red.x-1][red.y] == 2) { }
-            else {red.x--;}
+        }
+    else if (num == 3) {
+        if (world[red.x-1][red.y] == 2) {  
+        } else {
+            red.x--; 
             }
-        else if (num == 4) {
-            if (world[red.x][red.y+1] == 2) { }
-            else { red.y++;}
+        }
+    else if (num == 4) {
+        if (world[red.x][red.y+1] == 2) { 
+        } else { 
+            red.y++;
             }
-        else if (num == 5) {
-            if (world[red.x+1][red.y] == 2) { }
-            else { red.x++}
+        }
+    else if (num == 5) {
+        if (world[red.x+1][red.y] == 2) { 
+            console.log(world[red.x+1][red.y] + 'Ghost blocked going down')
+        } else { 
+            red.x++;
             }
-            document.getElementById('red').style.left = red.x*20 + "px";
-    document.getElementById('red').style.top = red.y*20 + "px";
-            displayRed();
-        }, 100 );
-   
-}
+        }
+        document.getElementById('red').style.left = red.y*20 + "px";
+        document.getElementById('red').style.top = red.x*20 + "px";
+    }
+
+setInterval(displayRed, 100);
 
 displayWorld();
-displayPacman();
 displayScore();
 displayRed();
 document.onkeydown = function(e){
