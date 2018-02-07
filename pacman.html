@@ -68,31 +68,49 @@ div#scoreinner {
     height: 50px;
     border: 1px solid white;
     position: absolute;
-    top: 295px;
-    left: 30px;
+    top: 95px;
+    left: 580px;
     color: white;
     padding: 7px;
+}
+#text {
+    
+    position: absolute;
+    top: 600px;
 }
 
 
 </style>
 <script>
     window.onload = function() {
-    var world = [
-        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-        [2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,2,1,1,1,1,2,2,1,1,2,2,2,2,2,1,1,1,2,1,2,2,2,2,2,2,2,2,2,2],
-        [2,1,1,2,1,1,1,1,1,2,2,2,2,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,2,1,1,2],
-        [2,1,1,2,1,1,1,1,1,2,1,1,2,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,1,2],
-        [2,1,1,2,2,2,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-        [2,1,1,1,2,1,2,2,2,2,2,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,2,2,2,1,1,1,1,1,1,1,1,2,1,1,2,1,1,2,2,2,2,2,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,2,1,1,1,1,1,1,2,1,1,2,2,2,2],
-        [2,1,1,1,1,2,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,1,1,1,1,2,1,1,2,1,1,2],
-        [2,2,2,2,2,2,1,1,1,1,1,1,2,1,1,1,1,1,2,2,2,2,2,2,2,2,1,1,2,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+        var world = [
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,2],
+        [2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2],
+        [2,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,2],
+        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,1,1,1,2],
+        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,2],
+        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,2],
+        [2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2],
+        [2,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,2],
+        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
     ];
     var pacman = {
         x:1,
@@ -103,7 +121,7 @@ div#scoreinner {
         y:1
     }
     var score = 0;
-
+    var redcheck = "1"
 
     function displayWorld(){
         var output = '';
@@ -140,56 +158,80 @@ function displayPacman(){
 function displayScore(){
     document.getElementById('score').innerHTML = score;
 }
+
 function displayRed(){
-    
-    
-    setTimeout(function(){
+    if (redcheck == "1") {
+        red = {
+        x:13,
+        y:13
+    }
+        document.getElementById('red').style.left = red.y*20 + "px";
+        document.getElementById('red').style.top = red.x*20 + "px";
+        redcheck = "2"
+    }
+    else if (redcheck == "2") {
         var num = Math.floor(Math.random() * (4)) + 2;
         if (num == 2){
-            if (world[red.x][red.y-1] == 2) { }
-            else { red.y--;}
+            if (world[red.x][red.y-1] == 2) { 
+            } else { 
+                red.y--;
+                }
             }
         else if (num == 3) {
-            if (world[red.x-1][red.y] == 2) { }
-            else {red.x--;}
+            if (world[red.x-1][red.y] == 2) {  
+            } else {
+                red.x--; 
+                }
             }
         else if (num == 4) {
-            if (world[red.x][red.y+1] == 2) { }
-            else { red.y++;}
+            if (world[red.x][red.y+1] == 2) { 
+            } else { 
+                red.y++;
+                }
             }
         else if (num == 5) {
-            if (world[red.x+1][red.y] == 2) { }
-            else { red.x++}
+            if (world[red.x+1][red.y] == 2) { 
+                console.log(world[red.x+1][red.y] + 'Ghost blocked going down')
+            } else { 
+                red.x++;
+                }
             }
-            document.getElementById('red').style.left = red.x*20 + "px";
-    document.getElementById('red').style.top = red.y*20 + "px";
-            displayRed();
-        }, 100 );
-   
+            document.getElementById('red').style.left = red.y*20 + "px";
+            document.getElementById('red').style.top = red.x*20 + "px";
+    }
 }
-
 displayWorld();
-displayPacman();
-displayScore();
 displayRed();
+function beginGame(){
+    setInterval(displayRed, 200);
+    
+    displayScore();
+    
+}
+var start = false
 document.onkeydown = function(e){
 
-   
-    if (e.keyCode == 37) {
-        if (world[pacman.y][pacman.x-1] == 2) { }
-        else { pacman.x--;}
+   if (start == true){
+        if (e.keyCode == 37) {
+            if (world[pacman.y][pacman.x-1] == 2) { }
+            else { pacman.x--;}
+        }
+        else if (e.keyCode == 38) {
+            if (world[pacman.y-1][pacman.x] == 2) { }
+            else { pacman.y--;}        
+        }
+        else if (e.keyCode == 39) {
+            if (world[pacman.y][pacman.x+1] == 2) { }
+            else { pacman.x++;}
+        }
+        else if (e.keyCode == 40) {
+            if (world[pacman.y+1][pacman.x] == 2) { }
+            else { pacman.y++;}
+        }
     }
-    else if (e.keyCode == 38) {
-        if (world[pacman.y-1][pacman.x] == 2) { }
-        else { pacman.y--;}        
-    }
-    else if (e.keyCode == 39) {
-        if (world[pacman.y][pacman.x+1] == 2) { }
-        else { pacman.x++;}
-    }
-    else if (e.keyCode == 40) {
-        if (world[pacman.y+1][pacman.x] == 2) { }
-        else { pacman.y++;}
+    if (e.keyCode == 13) {
+        beginGame()
+        start = true
     }
     if (world[pacman.y][pacman.x] == 1){
         world[pacman.y][pacman.x] = 0;
@@ -210,8 +252,9 @@ document.onkeydown = function(e){
             <div id="pacman" style="left: 20px; top: 20px;" ></div>
     
    
-    <div id="red" style="top: 20px; left: 20px;"></div>
+    <div id="red" ></div>
     <div id="scoreinner">Score: <div id="score"></div></div>
+   <div id="text">Press Enter to Begin<br>Control Pacman with arrow keys</div>
     </div>
   
 </body>
