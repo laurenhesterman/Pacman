@@ -73,6 +73,16 @@ div#scoreinner {
     color: white;
     padding: 7px;
 }
+#lives {
+    width: 60px;
+    height: 50px;
+    border: 1px solid white;
+    position: absolute;
+    top: 195px;
+    left: 580px;
+    color: white;
+    padding: 7px;
+}
 #text {
     
     position: absolute;
@@ -122,6 +132,9 @@ div#scoreinner {
     }
     var score = 0;
     var redcheck = "1"
+    var lives = 3
+    var start = "1"
+    var redrunning;
 
     function displayWorld(){
         var output = '';
@@ -157,6 +170,38 @@ function displayPacman(){
  }
 function displayScore(){
     document.getElementById('score').innerHTML = score;
+}
+function displayLives(){
+    document.getElementById('livesinner').innerHTML = lives;
+}
+function restart(){
+    redcheck = "1"
+    console.log(pacman)
+    pacman = {
+        x:1,
+        y:1
+    };
+    console.log(pacman)
+    lives-=1
+    start = "3"
+    
+        console.log("tab checked")
+        document.getElementById('text').innerHTML = "Caught! You lost one life. Press Enter to keep playing"
+    // start = "3"
+    displayPacman()
+    console.log(world)
+    for (var idx1 = 0; idx1<world.length; idx1++){
+
+        for (var idx2 = 0; idx2<world[idx1].length; idx2++){
+            if (world[idx1][idx2]==0){
+                world[idx1][idx2]=1
+            }
+        }
+    }
+    console.log(world)  
+    displayWorld()
+    displayLives()
+
 }
 
 function displayRed(){
@@ -199,19 +244,39 @@ function displayRed(){
             document.getElementById('red').style.left = red.y*20 + "px";
             document.getElementById('red').style.top = red.x*20 + "px";
     }
+    // if (start == false){
+    //     break
+    // }
 }
 displayWorld();
 displayRed();
+displayLives();
 function beginGame(){
-    setInterval(displayRed, 200);
     
+    var redrunning = setInterval(function(){
+        displayRed()
+        if (start == "3"){
+            clearInterval(redrunning)
+        }}, 200);
+    displayLives();
+    score = 0
     displayScore();
+    if (start == "3"){
+        return;
+    }
+    
+    
     
 }
-var start = false
-document.onkeydown = function(e){
 
-   if (start == true){
+document.onkeydown = function(e){
+    if (start == "1") { // "1" means game is beginning for the first time, with 3 lives
+        if (e.keyCode == 13) {
+            beginGame()
+            start = "2"   //makes arrow keys available
+        }
+    }
+    else if (start == "2"){ // "2" means enter has been pressed, game is in play
         if (e.keyCode == 37) {
             if (world[pacman.y][pacman.x-1] == 2) { }
             else { pacman.x--;}
@@ -228,10 +293,19 @@ document.onkeydown = function(e){
             if (world[pacman.y+1][pacman.x] == 2) { }
             else { pacman.y++;}
         }
+        else if (e.keyCode == 49) {
+        restart()
+        
+        }
     }
-    if (e.keyCode == 13) {
-        beginGame()
-        start = true
+    
+    else if (start == "3") { //"3 means a life has been lost, restart while reflecting lost life"
+        
+        if (e.keyCode == 13) {
+            start = "2"
+            beginGame()
+            document.getElementById('text').innerHTML = "Control Pacman with arrow keys"
+        }
     }
     if (world[pacman.y][pacman.x] == 1){
         world[pacman.y][pacman.x] = 0;
@@ -240,8 +314,7 @@ document.onkeydown = function(e){
     }
     displayWorld();
     displayPacman();
-    displayScore();
-    
+    displayScore();   
     console.log(e.keyCode)}
     }
 </script>
@@ -254,6 +327,7 @@ document.onkeydown = function(e){
    
     <div id="red" ></div>
     <div id="scoreinner">Score: <div id="score"></div></div>
+    <div id ="lives">Lives:<div id="livesinner"></div></div>
    <div id="text">Press Enter to Begin<br>Control Pacman with arrow keys</div>
     </div>
   
