@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    var num = (getRandomInt(2))
+    console.log(num)
+        if (num == 0){
+            if (pacman.x < orange.y){
+                if (world[orange.x][orange.y-1] == 2) { 
+                } else { 
+                    orange.y--;
+                    }
+            }
+            else {
+                if (world[orange.x][orange.y+1] == 2) { 
+                } else { 
+                    orange.y++;
+                    }
+            }}
+        else if (num == 1) {
+            if (pacman.y < orange.x){
+                if (world[orange.x-1][orange.y] == 2) {  
+                } else {
+                    orange.x--; 
+                    }
+                }
+            else {
+                if (world[orange.x+1][orange.y] == 2) { 
+                    console.log(world[orange.x+1][orange.y] + 'Ghost blocked going down')
+                } else { 
+                    orange.x++;
+                }
+            }
+            }
+      
+            document.getElementById('orange').style.left = orange.y*20 + "px";
+            document.getElementById('orange').style.top = orange.x*20 + "px";
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -57,6 +57,36 @@ div#red {
     position: absolute;
     
 }
+div#pink {
+    background: url("pink.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    
+}
+div#orange {
+    background: url("orange.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    
+}
+div#blue {
+    background: url("blue.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    
+}
 
 div {
     height: 20px;
@@ -130,11 +160,30 @@ div#scoreinner {
         x:1,
         y:1
     }
+    var pink = {
+        x:1,
+        y:1
+    }
+    var orange = {
+        x:1,
+        y:1
+    }
+    var blue = {
+        x:1,
+        y:1
+    }
     var score = 0;
     var redcheck = "1"
+    var pinkcheck = "1"
+    var orangecheck = "1"
+    var bluecheck = "1"
     var lives = 3
     var start = "1"
     var redrunning;
+    var pinkrunning;
+    var orangecheck;
+    var bluecheck;
+  
 
     function displayWorld(){
         var output = '';
@@ -167,6 +216,7 @@ div#scoreinner {
 function displayPacman(){
     document.getElementById('pacman').style.left = pacman.x*20 + "px";
     document.getElementById('pacman').style.top = pacman.y*20 + "px";
+
  }
 function displayScore(){
     document.getElementById('score').innerHTML = score;
@@ -176,6 +226,12 @@ function displayLives(){
 }
 function restart(){
     redcheck = "1"
+    red = {
+        x:13,
+        y:13}
+    pinkcheck = "1"
+    orangecheck = "1"
+    bluecheck = "1"
     console.log(pacman)
     pacman = {
         x:1,
@@ -244,12 +300,171 @@ function displayRed(){
             document.getElementById('red').style.left = red.y*20 + "px";
             document.getElementById('red').style.top = red.x*20 + "px";
     }
-    // if (start == false){
-    //     break
-    // }
+    // console.log(red.x, red.y)
+    // console.log(pacman.x, pacman.y)
+    if (red.x == pacman.y && red.y == pacman.x){
+        alert("YOU'VE BEEN CAUGHT BY RED!")
+        restart()
+    }
+}
+function displayPink(){
+    if (pinkcheck == "1") {
+        pink = {
+        x:13,
+        y:14
+    }
+        document.getElementById('pink').style.left = pink.y*20 + "px";
+        document.getElementById('pink').style.top = pink.x*20 + "px";
+        pinkcheck = "2"
+    }
+    else if (pinkcheck == "2") {       
+        var num = Math.floor(Math.random() * Math.floor(2));
+        console.log(num)
+        if (num == 0){
+            if (pacman.x < pink.y){
+                console.log("in")
+                if (world[pink.x][pink.y-1] == 2) { 
+                } else { 
+                    pink.y--;
+                    }
+            }
+            else {
+                if (world[pink.x][pink.y+1] == 2) { 
+                } else { 
+                    pink.y++;
+                    }
+            }}
+        else if (num == 1) {
+            if (pacman.y < pink.x){
+                console.log("in")
+                if (world[pink.x-1][pink.y] == 2) {  
+                } else {
+                    pink.x--; 
+                    }
+                }
+            else {
+                if (world[pink.x+1][pink.y] == 2) { 
+                    console.log(world[pink.x+1][pink.y] + 'Ghost blocked going down')
+                } else { 
+                    pink.x++;
+                }
+            }
+            }
+      
+            document.getElementById('pink').style.left = pink.y*20 + "px";
+            document.getElementById('pink').style.top = pink.x*20 + "px";
+    }
+    if (pink.x == pacman.y && pink.y == pacman.x){
+        alert("YOU'VE BEEN CAUGHT BY PINK!")
+        restart()
+    }
+    
+}
+function displayOrange(){
+    if (orangecheck == "1") {
+        orange = {
+        x:13,
+        y:12
+    }
+        document.getElementById('orange').style.left = orange.y*20 + "px";
+        document.getElementById('orange').style.top = orange.x*20 + "px";
+        orangecheck = "2"
+    }
+    else if (orangecheck == "2") {
+        var num = Math.floor(Math.random() * (4)) + 2;
+        if (num == 2){
+            if (world[orange.x][orange.y-1] == 2) { 
+            } else { 
+                orange.y--;
+                }
+            }
+        else if (num == 3) {
+            if (world[orange.x-1][orange.y] == 2) {  
+            } else {
+                orange.x--; 
+                }
+            }
+        else if (num == 4) {
+            if (world[orange.x][orange.y+1] == 2) { 
+            } else { 
+                orange.y++;
+                }
+            }
+        else if (num == 5) {
+            if (world[orange.x+1][orange.y] == 2) { 
+                console.log(world[orange.x+1][orange.y] + 'Ghost blocked going down')
+            } else { 
+                orange.x++;
+                }
+            }
+            document.getElementById('orange').style.left = orange.y*20 + "px";
+            document.getElementById('orange').style.top = orange.x*20 + "px";
+           
+    }
+    if (orange.x == pacman.y && orange.y == pacman.x){
+        alert("YOU'VE BEEN CAUGHT BY ORANGE!")
+        restart()
+    }
+   
+}
+function displayBlue(){
+    if (bluecheck == "1") {
+        blue = {
+        x:13,
+        y:11
+    }
+        document.getElementById('blue').style.left = blue.y*20 + "px";
+        document.getElementById('blue').style.top = blue.x*20 + "px";
+        bluecheck = "2"
+    }
+    else if (bluecheck == "2") {       
+        var num = Math.floor(Math.random() * Math.floor(2));
+        console.log(num)
+        if (num == 0){
+            if (pacman.x < blue.y){
+                console.log("in")
+                if (world[blue.x][blue.y-1] == 2) { 
+                } else { 
+                    blue.y--;
+                    }
+            }
+            else {
+                if (world[blue.x][blue.y+1] == 2) { 
+                } else { 
+                    blue.y++;
+                    }
+            }}
+        else if (num == 1) {
+            if (pacman.y < blue.x){
+                console.log("in")
+                if (world[blue.x-1][blue.y] == 2) {  
+                } else {
+                    blue.x--; 
+                    }
+                }
+            else {
+                if (world[blue.x+1][blue.y] == 2) { 
+                    console.log(world[blue.x+1][blue.y] + 'Ghost blocked going down')
+                } else { 
+                    blue.x++;
+                }
+            }
+            }
+      
+            document.getElementById('blue').style.left = blue.y*20 + "px";
+            document.getElementById('blue').style.top = blue.x*20 + "px";
+    }
+    if (blue.x == pacman.y && blue.y == pacman.x){
+        alert("YOU'VE BEEN CAUGHT BY blue!")
+        restart()
+    }
+    
 }
 displayWorld();
 displayRed();
+displayPink();
+displayOrange();
+displayBlue();
 displayLives();
 function beginGame(){
     
@@ -257,6 +472,21 @@ function beginGame(){
         displayRed()
         if (start == "3"){
             clearInterval(redrunning)
+        }}, 150);
+    var pinkrunning = setInterval(function(){
+        displayPink()
+        if (start == "3"){
+            clearInterval(pinkrunning)
+        }}, 400);
+    var orangerunning = setInterval(function(){
+        displayOrange()
+        if (start == "3"){
+            clearInterval(orangerunning)
+        }}, 300);
+    var bluerunning = setInterval(function(){
+        displayBlue()
+        if (start == "3"){
+            clearInterval(bluerunning)
         }}, 200);
     displayLives();
     score = 0
@@ -295,12 +525,11 @@ document.onkeydown = function(e){
         }
         else if (e.keyCode == 49) {
         restart()
-        
+        console.log(pacman, orange)
         }
-    }
-    
-    else if (start == "3") { //"3 means a life has been lost, restart while reflecting lost life"
         
+    }   
+    else if (start == "3") { //"3 means a life has been lost, restart while reflecting lost life"       
         if (e.keyCode == 13) {
             start = "2"
             beginGame()
@@ -309,9 +538,9 @@ document.onkeydown = function(e){
     }
     if (world[pacman.y][pacman.x] == 1){
         world[pacman.y][pacman.x] = 0;
-        score ++;
-        
+        score ++;        
     }
+    
     displayWorld();
     displayPacman();
     displayScore();   
@@ -326,6 +555,9 @@ document.onkeydown = function(e){
     
    
     <div id="red" ></div>
+    <div id="pink" ></div>
+    <div id="orange" ></div>
+    <div id="blue" ></div>
     <div id="scoreinner">Score: <div id="score"></div></div>
     <div id ="lives">Lives:<div id="livesinner"></div></div>
    <div id="text">Press Enter to Begin<br>Control Pacman with arrow keys</div>
