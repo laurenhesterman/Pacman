@@ -39,6 +39,7 @@ div#pacman {
     width: 20px;
     height: 20px;
     position: absolute;
+    
     /* position: relative; */
     -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
@@ -62,8 +63,8 @@ div#pink {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     position: absolute;
     
 }
@@ -94,8 +95,8 @@ div {
 
 
 div#scoreinner {
-    width: 60px;
-    height: 50px;
+    width: 80px;
+    height: 60px;
     border: 1px solid white;
     position: absolute;
     top: 95px;
@@ -104,8 +105,8 @@ div#scoreinner {
     padding: 7px;
 }
 #lives {
-    width: 60px;
-    height: 50px;
+    width: 80px;
+    height: 60px;
     border: 1px solid white;
     position: absolute;
     top: 195px;
@@ -126,29 +127,29 @@ div#scoreinner {
         var world = [
         [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
         [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,2],
+        [2,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,2],
         [2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2],
-        [2,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,2],
+        [2,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,2],
         [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,2],
         [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
         [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
         [2,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,1,1,1,2],
         [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
         [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,2,2,2,1,1,2,2,2,2,1,1,2,2,2,1,1,1,1,1,1,2],
         [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
         [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
         [2,1,1,1,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,2],
         [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
         [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
+        [2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,2],
         [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,2],
+        [2,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,2],
         [2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2],
-        [2,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,2],
+        [2,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,2],
         [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
         [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
     ];
@@ -216,6 +217,12 @@ div#scoreinner {
 function displayPacman(){
     document.getElementById('pacman').style.left = pacman.x*20 + "px";
     document.getElementById('pacman').style.top = pacman.y*20 + "px";
+    if (score == 490){
+        document.getElementById('bottom').innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h2>Congratulations! You've collected maximum gold and won the game :) <br>Refresh the page to play again</h2>"
+    }
+    if (lives == 0){
+        document.getElementById('bottom').innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h2>Sorry, you've lost all your lives and lost the game :/ <br>Refresh the page to try again</h2>"
+    }
 
  }
 function displayScore(){
@@ -303,7 +310,7 @@ function displayRed(){
     // console.log(red.x, red.y)
     // console.log(pacman.x, pacman.y)
     if (red.x == pacman.y && red.y == pacman.x){
-        alert("YOU'VE BEEN CAUGHT BY RED!")
+        alert("YOU'VE BEEN CAUGHT BY BLINKY!")
         restart()
     }
 }
@@ -355,7 +362,7 @@ function displayPink(){
             document.getElementById('pink').style.top = pink.x*20 + "px";
     }
     if (pink.x == pacman.y && pink.y == pacman.x){
-        alert("YOU'VE BEEN CAUGHT BY PINK!")
+        alert("YOU'VE BEEN CAUGHT BY PINKY!")
         restart()
     }
     
@@ -402,7 +409,7 @@ function displayOrange(){
            
     }
     if (orange.x == pacman.y && orange.y == pacman.x){
-        alert("YOU'VE BEEN CAUGHT BY ORANGE!")
+        alert("YOU'VE BEEN CAUGHT BY CLYDE!")
         restart()
     }
    
@@ -411,7 +418,7 @@ function displayBlue(){
     if (bluecheck == "1") {
         blue = {
         x:13,
-        y:11
+        y:15
     }
         document.getElementById('blue').style.left = blue.y*20 + "px";
         document.getElementById('blue').style.top = blue.x*20 + "px";
@@ -455,7 +462,7 @@ function displayBlue(){
             document.getElementById('blue').style.top = blue.x*20 + "px";
     }
     if (blue.x == pacman.y && blue.y == pacman.x){
-        alert("YOU'VE BEEN CAUGHT BY blue!")
+        alert("YOU'VE BEEN CAUGHT BY INKY!")
         restart()
     }
     
@@ -493,9 +500,7 @@ function beginGame(){
     displayScore();
     if (start == "3"){
         return;
-    }
-    
-    
+    } 
     
 }
 
@@ -545,22 +550,24 @@ document.onkeydown = function(e){
     displayPacman();
     displayScore();   
     console.log(e.keyCode)}
+
     }
+
 </script>
 <body>
     
     <div id="container">
             <div id="world"></div>
-            <div id="pacman" style="left: 20px; top: 20px;" ></div>
-    
-   
-    <div id="red" ></div>
-    <div id="pink" ></div>
-    <div id="orange" ></div>
-    <div id="blue" ></div>
-    <div id="scoreinner">Score: <div id="score"></div></div>
-    <div id ="lives">Lives:<div id="livesinner"></div></div>
-   <div id="text">Press Enter to Begin<br>Control Pacman with arrow keys</div>
+            <div id="pacman" style="left: 20px; top: 20px;" ></div>   
+            <div id="bottom">        
+            <div id="red" ></div>
+            <div id="pink" ></div>
+            <div id="orange" ></div>
+            <div id="blue" ></div>
+            <div id="scoreinner">Coins: <div id="score"></div></div>
+            <div id ="lives">Lives Remaining:<div id="livesinner"></div></div>
+   <div id="text"><h1>PACMAN</h1>Press Enter to Begin<br>Control Pacman with arrow keys</div>
+    </div>
     </div>
   
 </body>
