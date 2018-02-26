@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,568 +8,591 @@
     <title>Pacman</title>
 </head>
 <style>
-body {
-    background-color: black;
-    margin: 0px;
-    color: white;
-    /* padding: 20px; */
-}
-div.row div{
-    width: 20px;
-    height: 20px;
-    
-    display: inline-block;
-    
-    
-}
-div.brick {
-    background-color: blue;
-}
-div.coin {
-    background: url("coin2.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 60%;
-}
+    body {
+        background-color: black;
+        margin: 0px;
+        color: white;
+        /* padding: 20px; */
+    }
 
-div#pacman {
-    background: url("pac.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    
-    /* position: relative; */
-    -moz-transform: scaleX(-1);
+    div.row div {
+        width: 20px;
+        height: 20px;
+
+        display: inline-block;
+
+
+    }
+
+    div.brick {
+        background-color: blue;
+    }
+
+    div.coin {
+        background: url("coin2.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 60%;
+    }
+
+    div#pacman {
+        background: url("pac.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+
+        /* position: relative; */
+        -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
         -webkit-transform: scaleX(-1);
         transform: scaleX(-1);
         filter: FlipH;
         -ms-filter: "FlipH";
-}
-div#red {
-    background: url("red.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    
-}
-div#pink {
-    background: url("pink.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 18px;
-    height: 18px;
-    position: absolute;
-    
-}
-div#orange {
-    background: url("orange.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    
-}
-div#blue {
-    background: url("blue.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    
-}
+    }
 
-div {
-    height: 20px;
-}
+    div#red {
+        background: url("red.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        position: absolute;
 
+    }
 
-div#scoreinner {
-    width: 80px;
-    height: 60px;
-    border: 1px solid white;
-    position: absolute;
-    top: 95px;
-    left: 580px;
-    color: white;
-    padding: 7px;
-}
-#lives {
-    width: 80px;
-    height: 60px;
-    border: 1px solid white;
-    position: absolute;
-    top: 195px;
-    left: 580px;
-    color: white;
-    padding: 7px;
-}
-#text {
-    
-    position: absolute;
-    top: 600px;
-}
+    div#pink {
+        background: url("pink.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 18px;
+        height: 18px;
+        position: absolute;
+
+    }
+
+    div#orange {
+        background: url("orange.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+
+    }
+
+    div#blue {
+        background: url("blue.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+
+    }
+
+    div {
+        height: 20px;
+    }
 
 
+    div#scoreinner {
+        width: 80px;
+        height: 60px;
+        border: 1px solid white;
+        position: absolute;
+        top: 95px;
+        left: 580px;
+        color: white;
+        padding: 7px;
+    }
+
+    #lives {
+        width: 80px;
+        height: 60px;
+        border: 1px solid white;
+        position: absolute;
+        top: 195px;
+        left: 580px;
+        color: white;
+        padding: 7px;
+    }
+
+    #text {
+
+        position: absolute;
+        top: 600px;
+    }
 </style>
 <script>
-    window.onload = function() {
+    window.onload = function () {
         var world = [
-        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,2],
-        [2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2],
-        [2,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,1,1,1,2],
-        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,2,2,2,1,1,2,2,2,2,1,1,2,2,2,1,1,1,1,1,1,2],
-        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,2],
-        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,2],
-        [2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2],
-        [2,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,2],
-        [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
-    ];
-    var pacman = {
-        x:1,
-        y:1
-    };
-    var red = {
-        x:1,
-        y:1
-    }
-    var pink = {
-        x:1,
-        y:1
-    }
-    var orange = {
-        x:1,
-        y:1
-    }
-    var blue = {
-        x:1,
-        y:1
-    }
-    var score = 0;
-    var redcheck = "1"
-    var pinkcheck = "1"
-    var orangecheck = "1"
-    var bluecheck = "1"
-    var lives = 3
-    var start = "1"
-    var redrunning;
-    var pinkrunning;
-    var orangecheck;
-    var bluecheck;
-  
-
-    function displayWorld(){
-        var output = '';
-    
-    for (var i =0; i<world.length; i++) {
-        output += "<div class='row'>";
-        
-        for (var k = 0; k<world[i].length; k++) {
-            // output = output + world[i][k];
-             if (world[i][k] == 2) 
-                 output += "<div class='brick'></div>";
-            
-            else if (world[i][k] == 1) 
-                output += "<div class='coin'></div>";
-            
-            else if (world[i][k] == 3) 
-                output += "<div class='pacman'></div>";
-            
-            else if (world[i][k] == 0) 
-                output += "<div class='empty'></div>";
-
-            
+            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2],
+            [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2],
+            [2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2],
+            [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2],
+            [2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+        ];
+        var pacman = {
+            x: 1,
+            y: 1
+        };
+        var red = {
+            x: 1,
+            y: 1
         }
-        output += "\n</div>";
-    }
-    // console.log(output);
-    document.getElementById('world').innerHTML = output;
-    
- }
-function displayPacman(){
-    document.getElementById('pacman').style.left = pacman.x*20 + "px";
-    document.getElementById('pacman').style.top = pacman.y*20 + "px";
-    if (score == 490){
-        document.getElementById('bottom').innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h2>Congratulations! You've collected maximum gold and won the game :) <br>Refresh the page to play again</h2>"
-    }
-    if (lives == 0){
-        document.getElementById('bottom').innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h2>Sorry, you've lost all your lives and lost the game :/ <br>Refresh the page to try again</h2>"
-    }
-
- }
-function displayScore(){
-    document.getElementById('score').innerHTML = score;
-}
-function displayLives(){
-    document.getElementById('livesinner').innerHTML = lives;
-}
-function restart(){
-    redcheck = "1"
-    red = {
-        x:13,
-        y:13}
-    pinkcheck = "1"
-    orangecheck = "1"
-    bluecheck = "1"
-    console.log(pacman)
-    pacman = {
-        x:1,
-        y:1
-    };
-    console.log(pacman)
-    lives-=1
-    start = "3"
-    
-        console.log("tab checked")
-        document.getElementById('text').innerHTML = "Caught! You lost one life. Press Enter to keep playing"
-    // start = "3"
-    displayPacman()
-    console.log(world)
-    for (var idx1 = 0; idx1<world.length; idx1++){
-
-        for (var idx2 = 0; idx2<world[idx1].length; idx2++){
-            if (world[idx1][idx2]==0){
-                world[idx1][idx2]=1
-            }
+        var pink = {
+            x: 1,
+            y: 1
         }
-    }
-    console.log(world)  
-    displayWorld()
-    displayLives()
+        var orange = {
+            x: 1,
+            y: 1
+        }
+        var blue = {
+            x: 1,
+            y: 1
+        }
+        var score = 0;
+        var redcheck = "1"
+        var pinkcheck = "1"
+        var orangecheck = "1"
+        var bluecheck = "1"
+        var lives = 3
+        var start = "1"
+        var redrunning;
+        var pinkrunning;
+        var orangecheck;
+        var bluecheck;
 
-}
 
-function displayRed(){
-    if (redcheck == "1") {
-        red = {
-        x:13,
-        y:13
-    }
-        document.getElementById('red').style.left = red.y*20 + "px";
-        document.getElementById('red').style.top = red.x*20 + "px";
-        redcheck = "2"
-    }
-    else if (redcheck == "2") {
-        var num = Math.floor(Math.random() * (4)) + 2;
-        if (num == 2){
-            if (world[red.x][red.y-1] == 2) { 
-            } else { 
-                red.y--;
+        function displayWorld() {
+            var output = '';
+
+            for (var i = 0; i < world.length; i++) {
+                output += "<div class='row'>";
+
+                for (var k = 0; k < world[i].length; k++) {
+                    // output = output + world[i][k];
+                    if (world[i][k] == 2)
+                        output += "<div class='brick'></div>";
+
+                    else if (world[i][k] == 1)
+                        output += "<div class='coin'></div>";
+
+                    else if (world[i][k] == 3)
+                        output += "<div class='pacman'></div>";
+
+                    else if (world[i][k] == 0)
+                        output += "<div class='empty'></div>";
+
+
                 }
+                output += "\n</div>";
             }
-        else if (num == 3) {
-            if (world[red.x-1][red.y] == 2) {  
-            } else {
-                red.x--; 
-                }
+            // console.log(output);
+            document.getElementById('world').innerHTML = output;
+
+        }
+        function displayPacman() {
+            document.getElementById('pacman').style.left = pacman.x * 20 + "px";
+            document.getElementById('pacman').style.top = pacman.y * 20 + "px";
+            if (score == 490) {
+                document.getElementById('bottom').innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h2>Congratulations! You've collected maximum gold and won the game :) <br>Refresh the page to play again</h2>"
             }
-        else if (num == 4) {
-            if (world[red.x][red.y+1] == 2) { 
-            } else { 
-                red.y++;
-                }
+            if (lives == 0) {
+                document.getElementById('bottom').innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h2>Sorry, you've lost all your lives and lost the game :/ <br>Refresh the page to try again</h2>"
             }
-        else if (num == 5) {
-            if (world[red.x+1][red.y] == 2) { 
-                console.log(world[red.x+1][red.y] + 'Ghost blocked going down')
-            } else { 
-                red.x++;
-                }
+
+        }
+        function displayScore() {
+            document.getElementById('score').innerHTML = score;
+        }
+        function displayLives() {
+            document.getElementById('livesinner').innerHTML = lives;
+        }
+        function restart() {
+            redcheck = "1"
+            red = {
+                x: 13,
+                y: 13
             }
-            document.getElementById('red').style.left = red.y*20 + "px";
-            document.getElementById('red').style.top = red.x*20 + "px";
-    }
-    // console.log(red.x, red.y)
-    // console.log(pacman.x, pacman.y)
-    if (red.x == pacman.y && red.y == pacman.x){
-        alert("YOU'VE BEEN CAUGHT BY BLINKY!")
-        restart()
-    }
-}
-function displayPink(){
-    if (pinkcheck == "1") {
-        pink = {
-        x:13,
-        y:14
-    }
-        document.getElementById('pink').style.left = pink.y*20 + "px";
-        document.getElementById('pink').style.top = pink.x*20 + "px";
-        pinkcheck = "2"
-    }
-    else if (pinkcheck == "2") {       
-        var num = Math.floor(Math.random() * Math.floor(2));
-        console.log(num)
-        if (num == 0){
-            if (pacman.x < pink.y){
-                console.log("in")
-                if (world[pink.x][pink.y-1] == 2) { 
-                } else { 
-                    pink.y--;
-                    }
-            }
-            else {
-                if (world[pink.x][pink.y+1] == 2) { 
-                } else { 
-                    pink.y++;
-                    }
-            }}
-        else if (num == 1) {
-            if (pacman.y < pink.x){
-                console.log("in")
-                if (world[pink.x-1][pink.y] == 2) {  
-                } else {
-                    pink.x--; 
+            pinkcheck = "1"
+            orangecheck = "1"
+            bluecheck = "1"
+            console.log(pacman)
+            pacman = {
+                x: 1,
+                y: 1
+            };
+            console.log(pacman)
+            lives -= 1
+            start = "3"
+
+            console.log("tab checked")
+            document.getElementById('text').innerHTML = "Caught! You lost one life. Press Enter to keep playing"
+            // start = "3"
+            displayPacman()
+            console.log(world)
+            for (var idx1 = 0; idx1 < world.length; idx1++) {
+
+                for (var idx2 = 0; idx2 < world[idx1].length; idx2++) {
+                    if (world[idx1][idx2] == 0) {
+                        world[idx1][idx2] = 1
                     }
                 }
-            else {
-                if (world[pink.x+1][pink.y] == 2) { 
-                    console.log(world[pink.x+1][pink.y] + 'Ghost blocked going down')
-                } else { 
-                    pink.x++;
-                }
             }
-            }
-      
-            document.getElementById('pink').style.left = pink.y*20 + "px";
-            document.getElementById('pink').style.top = pink.x*20 + "px";
-    }
-    if (pink.x == pacman.y && pink.y == pacman.x){
-        alert("YOU'VE BEEN CAUGHT BY PINKY!")
-        restart()
-    }
-    
-}
-function displayOrange(){
-    if (orangecheck == "1") {
-        orange = {
-        x:13,
-        y:12
-    }
-        document.getElementById('orange').style.left = orange.y*20 + "px";
-        document.getElementById('orange').style.top = orange.x*20 + "px";
-        orangecheck = "2"
-    }
-    else if (orangecheck == "2") {
-        var num = Math.floor(Math.random() * (4)) + 2;
-        if (num == 2){
-            if (world[orange.x][orange.y-1] == 2) { 
-            } else { 
-                orange.y--;
-                }
-            }
-        else if (num == 3) {
-            if (world[orange.x-1][orange.y] == 2) {  
-            } else {
-                orange.x--; 
-                }
-            }
-        else if (num == 4) {
-            if (world[orange.x][orange.y+1] == 2) { 
-            } else { 
-                orange.y++;
-                }
-            }
-        else if (num == 5) {
-            if (world[orange.x+1][orange.y] == 2) { 
-                console.log(world[orange.x+1][orange.y] + 'Ghost blocked going down')
-            } else { 
-                orange.x++;
-                }
-            }
-            document.getElementById('orange').style.left = orange.y*20 + "px";
-            document.getElementById('orange').style.top = orange.x*20 + "px";
-           
-    }
-    if (orange.x == pacman.y && orange.y == pacman.x){
-        alert("YOU'VE BEEN CAUGHT BY CLYDE!")
-        restart()
-    }
-   
-}
-function displayBlue(){
-    if (bluecheck == "1") {
-        blue = {
-        x:13,
-        y:15
-    }
-        document.getElementById('blue').style.left = blue.y*20 + "px";
-        document.getElementById('blue').style.top = blue.x*20 + "px";
-        bluecheck = "2"
-    }
-    else if (bluecheck == "2") {       
-        var num = Math.floor(Math.random() * Math.floor(2));
-        console.log(num)
-        if (num == 0){
-            if (pacman.x < blue.y){
-                console.log("in")
-                if (world[blue.x][blue.y-1] == 2) { 
-                } else { 
-                    blue.y--;
-                    }
-            }
-            else {
-                if (world[blue.x][blue.y+1] == 2) { 
-                } else { 
-                    blue.y++;
-                    }
-            }}
-        else if (num == 1) {
-            if (pacman.y < blue.x){
-                console.log("in")
-                if (world[blue.x-1][blue.y] == 2) {  
-                } else {
-                    blue.x--; 
-                    }
-                }
-            else {
-                if (world[blue.x+1][blue.y] == 2) { 
-                    console.log(world[blue.x+1][blue.y] + 'Ghost blocked going down')
-                } else { 
-                    blue.x++;
-                }
-            }
-            }
-      
-            document.getElementById('blue').style.left = blue.y*20 + "px";
-            document.getElementById('blue').style.top = blue.x*20 + "px";
-    }
-    if (blue.x == pacman.y && blue.y == pacman.x){
-        alert("YOU'VE BEEN CAUGHT BY INKY!")
-        restart()
-    }
-    
-}
-displayWorld();
-displayRed();
-displayPink();
-displayOrange();
-displayBlue();
-displayLives();
-function beginGame(){
-    
-    var redrunning = setInterval(function(){
-        displayRed()
-        if (start == "3"){
-            clearInterval(redrunning)
-        }}, 150);
-    var pinkrunning = setInterval(function(){
-        displayPink()
-        if (start == "3"){
-            clearInterval(pinkrunning)
-        }}, 400);
-    var orangerunning = setInterval(function(){
-        displayOrange()
-        if (start == "3"){
-            clearInterval(orangerunning)
-        }}, 300);
-    var bluerunning = setInterval(function(){
-        displayBlue()
-        if (start == "3"){
-            clearInterval(bluerunning)
-        }}, 200);
-    displayLives();
-    score = 0
-    displayScore();
-    if (start == "3"){
-        return;
-    } 
-    
-}
+            console.log(world)
+            displayWorld()
+            displayLives()
 
-document.onkeydown = function(e){
-    if (start == "1") { // "1" means game is beginning for the first time, with 3 lives
-        if (e.keyCode == 13) {
-            beginGame()
-            start = "2"   //makes arrow keys available
         }
-    }
-    else if (start == "2"){ // "2" means enter has been pressed, game is in play
-        if (e.keyCode == 37) {
-            if (world[pacman.y][pacman.x-1] == 2) { }
-            else { pacman.x--;}
+
+        function displayRed() {
+            if (redcheck == "1") {
+                red = {
+                    x: 13,
+                    y: 13
+                }
+                document.getElementById('red').style.left = red.y * 20 + "px";
+                document.getElementById('red').style.top = red.x * 20 + "px";
+                redcheck = "2"
+            }
+            else if (redcheck == "2") {
+                var num = Math.floor(Math.random() * (4)) + 2;
+                if (num == 2) {
+                    if (world[red.x][red.y - 1] == 2) {
+                    } else {
+                        red.y--;
+                    }
+                }
+                else if (num == 3) {
+                    if (world[red.x - 1][red.y] == 2) {
+                    } else {
+                        red.x--;
+                    }
+                }
+                else if (num == 4) {
+                    if (world[red.x][red.y + 1] == 2) {
+                    } else {
+                        red.y++;
+                    }
+                }
+                else if (num == 5) {
+                    if (world[red.x + 1][red.y] == 2) {
+                        console.log(world[red.x + 1][red.y] + 'Ghost blocked going down')
+                    } else {
+                        red.x++;
+                    }
+                }
+                document.getElementById('red').style.left = red.y * 20 + "px";
+                document.getElementById('red').style.top = red.x * 20 + "px";
+            }
+            // console.log(red.x, red.y)
+            // console.log(pacman.x, pacman.y)
+            if (red.x == pacman.y && red.y == pacman.x) {
+                alert("YOU'VE BEEN CAUGHT BY BLINKY!")
+                restart()
+            }
         }
-        else if (e.keyCode == 38) {
-            if (world[pacman.y-1][pacman.x] == 2) { }
-            else { pacman.y--;}        
+        function displayPink() {
+            if (pinkcheck == "1") {
+                pink = {
+                    x: 13,
+                    y: 14
+                }
+                document.getElementById('pink').style.left = pink.y * 20 + "px";
+                document.getElementById('pink').style.top = pink.x * 20 + "px";
+                pinkcheck = "2"
+            }
+            else if (pinkcheck == "2") {
+                var num = Math.floor(Math.random() * Math.floor(2));
+                console.log(num)
+                if (num == 0) {
+                    if (pacman.x < pink.y) {
+                        console.log("in")
+                        if (world[pink.x][pink.y - 1] == 2) {
+                        } else {
+                            pink.y--;
+                        }
+                    }
+                    else {
+                        if (world[pink.x][pink.y + 1] == 2) {
+                        } else {
+                            pink.y++;
+                        }
+                    }
+                }
+                else if (num == 1) {
+                    if (pacman.y < pink.x) {
+                        console.log("in")
+                        if (world[pink.x - 1][pink.y] == 2) {
+                        } else {
+                            pink.x--;
+                        }
+                    }
+                    else {
+                        if (world[pink.x + 1][pink.y] == 2) {
+                            console.log(world[pink.x + 1][pink.y] + 'Ghost blocked going down')
+                        } else {
+                            pink.x++;
+                        }
+                    }
+                }
+
+                document.getElementById('pink').style.left = pink.y * 20 + "px";
+                document.getElementById('pink').style.top = pink.x * 20 + "px";
+            }
+            if (pink.x == pacman.y && pink.y == pacman.x) {
+                alert("YOU'VE BEEN CAUGHT BY PINKY!")
+                restart()
+            }
+
         }
-        else if (e.keyCode == 39) {
-            if (world[pacman.y][pacman.x+1] == 2) { }
-            else { pacman.x++;}
+        function displayOrange() {
+            if (orangecheck == "1") {
+                orange = {
+                    x: 13,
+                    y: 12
+                }
+                document.getElementById('orange').style.left = orange.y * 20 + "px";
+                document.getElementById('orange').style.top = orange.x * 20 + "px";
+                orangecheck = "2"
+            }
+            else if (orangecheck == "2") {
+                var num = Math.floor(Math.random() * (4)) + 2;
+                if (num == 2) {
+                    if (world[orange.x][orange.y - 1] == 2) {
+                    } else {
+                        orange.y--;
+                    }
+                }
+                else if (num == 3) {
+                    if (world[orange.x - 1][orange.y] == 2) {
+                    } else {
+                        orange.x--;
+                    }
+                }
+                else if (num == 4) {
+                    if (world[orange.x][orange.y + 1] == 2) {
+                    } else {
+                        orange.y++;
+                    }
+                }
+                else if (num == 5) {
+                    if (world[orange.x + 1][orange.y] == 2) {
+                        console.log(world[orange.x + 1][orange.y] + 'Ghost blocked going down')
+                    } else {
+                        orange.x++;
+                    }
+                }
+                document.getElementById('orange').style.left = orange.y * 20 + "px";
+                document.getElementById('orange').style.top = orange.x * 20 + "px";
+
+            }
+            if (orange.x == pacman.y && orange.y == pacman.x) {
+                alert("YOU'VE BEEN CAUGHT BY CLYDE!")
+                restart()
+            }
+
         }
-        else if (e.keyCode == 40) {
-            if (world[pacman.y+1][pacman.x] == 2) { }
-            else { pacman.y++;}
+        function displayBlue() {
+            if (bluecheck == "1") {
+                blue = {
+                    x: 13,
+                    y: 15
+                }
+                document.getElementById('blue').style.left = blue.y * 20 + "px";
+                document.getElementById('blue').style.top = blue.x * 20 + "px";
+                bluecheck = "2"
+            }
+            else if (bluecheck == "2") {
+                var num = Math.floor(Math.random() * Math.floor(2));
+                console.log(num)
+                if (num == 0) {
+                    if (pacman.x < blue.y) {
+                        console.log("in")
+                        if (world[blue.x][blue.y - 1] == 2) {
+                        } else {
+                            blue.y--;
+                        }
+                    }
+                    else {
+                        if (world[blue.x][blue.y + 1] == 2) {
+                        } else {
+                            blue.y++;
+                        }
+                    }
+                }
+                else if (num == 1) {
+                    if (pacman.y < blue.x) {
+                        console.log("in")
+                        if (world[blue.x - 1][blue.y] == 2) {
+                        } else {
+                            blue.x--;
+                        }
+                    }
+                    else {
+                        if (world[blue.x + 1][blue.y] == 2) {
+                            console.log(world[blue.x + 1][blue.y] + 'Ghost blocked going down')
+                        } else {
+                            blue.x++;
+                        }
+                    }
+                }
+
+                document.getElementById('blue').style.left = blue.y * 20 + "px";
+                document.getElementById('blue').style.top = blue.x * 20 + "px";
+            }
+            if (blue.x == pacman.y && blue.y == pacman.x) {
+                alert("YOU'VE BEEN CAUGHT BY INKY!")
+                restart()
+            }
+
         }
-        else if (e.keyCode == 49) {
-        restart()
-        console.log(pacman, orange)
+        displayWorld();
+        displayRed();
+        displayPink();
+        displayOrange();
+        displayBlue();
+        displayLives();
+        function beginGame() {
+
+            var redrunning = setInterval(function () {
+                displayRed()
+                if (start == "3") {
+                    clearInterval(redrunning)
+                }
+            }, 150);
+            var pinkrunning = setInterval(function () {
+                displayPink()
+                if (start == "3") {
+                    clearInterval(pinkrunning)
+                }
+            }, 400);
+            var orangerunning = setInterval(function () {
+                displayOrange()
+                if (start == "3") {
+                    clearInterval(orangerunning)
+                }            
+}, 300);
+            var bluerunning = setInterval(function () {
+                displayBlue()
+                if (start == "3") {
+                    clearInterval(bluerunning)
+                }            
+}, 200);
+            displayLives();
+            score = 0
+            displayScore();
+            if (start == "3") {
+                return;
+            }
+
         }
-        
-    }   
-    else if (start == "3") { //"3 means a life has been lost, restart while reflecting lost life"       
-        if (e.keyCode == 13) {
-            start = "2"
-            beginGame()
-            document.getElementById('text').innerHTML = "Control Pacman with arrow keys"
+
+        document.onkeydown = function (e) {
+            if (start == "1") { // "1" means game is beginning for the first time, with 3 lives
+                if (e.keyCode == 13) {
+                    beginGame()
+                    start = "2"   //makes arrow keys available
+                }
+            }
+            else if (start == "2") { // "2" means enter has been pressed, game is in play
+                if (e.keyCode == 37) {
+                    if (world[pacman.y][pacman.x - 1] == 2) { }
+                    else { pacman.x--; }
+                }
+                else if (e.keyCode == 38) {
+                    if (world[pacman.y - 1][pacman.x] == 2) { }
+                    else { pacman.y--; }
+                }
+                else if (e.keyCode == 39) {
+                    if (world[pacman.y][pacman.x + 1] == 2) { }
+                    else { pacman.x++; }
+                }
+                else if (e.keyCode == 40) {
+                    if (world[pacman.y + 1][pacman.x] == 2) { }
+                    else { pacman.y++; }
+                }
+                else if (e.keyCode == 49) {
+                    restart()
+                    console.log(pacman, orange)
+                }
+
+            }
+            else if (start == "3") { //"3 means a life has been lost, restart while reflecting lost life"       
+                if (e.keyCode == 13) {
+                    start = "2"
+                    beginGame()
+                    document.getElementById('text').innerHTML = "Control Pacman with arrow keys"
+                }
+            }
+            if (world[pacman.y][pacman.x] == 1) {
+                world[pacman.y][pacman.x] = 0;
+                score++;
+            }
+
+            displayWorld();
+            displayPacman();
+            displayScore();
+            console.log(e.keyCode)
         }
-    }
-    if (world[pacman.y][pacman.x] == 1){
-        world[pacman.y][pacman.x] = 0;
-        score ++;        
-    }
-    
-    displayWorld();
-    displayPacman();
-    displayScore();   
-    console.log(e.keyCode)}
 
     }
 
 </script>
+
 <body>
-    
+
     <div id="container">
-            <div id="world"></div>
-            <div id="pacman" style="left: 20px; top: 20px;" ></div>   
-            <div id="bottom">        
-            <div id="red" ></div>
-            <div id="pink" ></div>
-            <div id="orange" ></div>
-            <div id="blue" ></div>
-            <div id="scoreinner">Coins: <div id="score"></div></div>
-            <div id ="lives">Lives Remaining:<div id="livesinner"></div></div>
-   <div id="text"><h1>PACMAN</h1>Press Enter to Begin<br>Control Pacman with arrow keys</div>
+        <div id="world"></div>
+        <div id="pacman" style="left: 20px; top: 20px;"></div>
+        <div id="bottom">
+            <div id="red"></div>
+            <div id="pink"></div>
+            <div id="orange"></div>
+            <div id="blue"></div>
+            <div id="scoreinner">Coins:
+                <div id="score"></div>
+            </div>
+            <div id="lives">Lives Remaining:
+                <div id="livesinner"></div>
+            </div>
+            <div id="text">
+                <h1>PACMAN</h1>Press Enter to Begin
+                <br>Control Pacman with arrow keys</div>
+        </div>
     </div>
-    </div>
-  
+
 </body>
+
 </html>
