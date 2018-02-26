@@ -45,14 +45,22 @@
         position: absolute;
 
         /* position: relative; */
-        -moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        filter: FlipH;
-        -ms-filter: "FlipH";
+        
     }
+    .up {
+        transform: rotate(90deg);
+    }
+    .down {
+        transform: rotate(270deg);
+    }
+    .left {
+        transform: rotate(0deg);
+        
 
+    }
+    .right {
+        transform: rotate(180deg);
+    }
     div#red {
         background: url("red.gif");
         background-repeat: no-repeat;
@@ -223,6 +231,9 @@
 
         }
         function displayPacman() {
+            if (start == "1"){
+                document.getElementById('pacman').setAttribute("class", "right")
+            }
             document.getElementById('pacman').style.left = pacman.x * 20 + "px";
             document.getElementById('pacman').style.top = pacman.y * 20 + "px";
             if (score == 490) {
@@ -497,19 +508,19 @@
                 if (start == "3") {
                     clearInterval(pinkrunning)
                 }
-            }, 400);
+            }, 200);
             var orangerunning = setInterval(function () {
                 displayOrange()
                 if (start == "3") {
                     clearInterval(orangerunning)
                 }            
-}, 300);
+}, 200);
             var bluerunning = setInterval(function () {
                 displayBlue()
                 if (start == "3") {
                     clearInterval(bluerunning)
                 }            
-}, 200);
+}, 150);
             displayLives();
             score = 0
             displayScore();
@@ -528,20 +539,26 @@
             }
             else if (start == "2") { // "2" means enter has been pressed, game is in play
                 if (e.keyCode == 37) {
+                    document.getElementById('pacman').setAttribute("class", "left")
                     if (world[pacman.y][pacman.x - 1] == 2) { }
                     else { pacman.x--; }
                 }
                 else if (e.keyCode == 38) {
+                    document.getElementById('pacman').setAttribute("class", "up")
                     if (world[pacman.y - 1][pacman.x] == 2) { }
                     else { pacman.y--; }
                 }
                 else if (e.keyCode == 39) {
+                    document.getElementById('pacman').setAttribute("class", "right")
                     if (world[pacman.y][pacman.x + 1] == 2) { }
-                    else { pacman.x++; }
+                    else {                         
+                        pacman.x++; }
                 }
                 else if (e.keyCode == 40) {
+                    document.getElementById('pacman').setAttribute("class", "down")
                     if (world[pacman.y + 1][pacman.x] == 2) { }
-                    else { pacman.y++; }
+                    else { 
+                        pacman.y++; }
                 }
                 else if (e.keyCode == 49) {
                     restart()
@@ -575,7 +592,7 @@
 
     <div id="container">
         <div id="world"></div>
-        <div id="pacman" style="left: 20px; top: 20px;"></div>
+        <div id="pacman" class="right"style="left: 20px; top: 20px;"></div>
         <div id="bottom">
             <div id="red"></div>
             <div id="pink"></div>
